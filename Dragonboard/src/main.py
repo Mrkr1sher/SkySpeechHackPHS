@@ -36,7 +36,9 @@ def listenForUpdates():
     inData = None
 
     while True:
-        c, addr = s.accept()     
+        c, addr = s.accept() 
+
+        print("accepted connection")    
     
         inData = c.recv(1024)
 
