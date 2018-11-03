@@ -55,7 +55,7 @@ def callback(handle, data):
         elif s[0] == 'D' and s[1].isdigit() and int(s[1])<len(devices):
             devices[int(s[1])].char_write(uuid_sent_data, data, False)   
         # If there is no prefix on the received data, the string is just received on Dragonboard.
-    except NotificationTimeout as e:ls
+    except NotificationTimeout as e:
         
         print e
  
