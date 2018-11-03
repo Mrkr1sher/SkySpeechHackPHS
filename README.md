@@ -1,0 +1,1 @@
+An application to help people in zones without internet connectivity get their messages out
