@@ -2,10 +2,10 @@ import socket
 
 s=socket.socket()
 
-host = "127.0.0.1"
-port = 12345
+host = "172.16.243.226"
+port = 1234
 
-s.connect()
+s.connect((host, port))
 
 print(s.recv(1024))
 s.close()
