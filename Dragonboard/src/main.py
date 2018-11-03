@@ -42,7 +42,7 @@ def listenForUpdates():
     
         inData = c.recv(1024)
 
-        print("Data" + str(inData)
+        print("Data" + str(inData))
 
         if(inData[:3] == "MS:"):
           dumpData(inData)  
