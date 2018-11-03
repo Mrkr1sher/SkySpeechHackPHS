@@ -47,6 +47,7 @@ def listenForUpdates():
         if(inData[:3] == "MS:"):
           dumpData(inData)  
 
+print("Listen for updates ")
 listenForUpdates()
     
 
