@@ -1,13 +1,47 @@
-import socket               # Import socket module
+import socket
+import json
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 1234               # Reserve a port for your service.
-s.bind(("172.16.243.226", port))        # Bind to the port
+port = 1234
+localIp  = "172.16.243.226""
 
-s.listen(5)                 # Now wait for client connection.
-while True:
-   c, addr = s.accept()     # Establish connection with client.
-   print 'Got connection from', addr
-   c.send('Thank you for connecting')
-   c.close()                # Close the connection
+#Dump function
+def dumpData(data):
+
+    f = open("messages.json")
+    if f == None:
+        f = open("messages.json", "w+")
+        json.dump([], f)
+        f.close()
+        f = open("messages.json", "r")
+
+    currentData = json.load(f)
+    
+    currentData.append()
+
+    f.close()
+    f = open("messages.json")
+    json.dump(f, currentData)
+
+    f.close()
+
+    return
+
+#Listen function
+def listenForUpdates():
+    s = socket.socket()
+    s.bind((localIp, port))
+
+    s.listen(5)               
+
+    inData = None
+
+    while True:
+        c, addr = s.accept()     
+    
+        inData = s.recv(1024)
+
+        if(inData[:3] == "MS:"):
+          dumpData(inData)  
+
+    
+
