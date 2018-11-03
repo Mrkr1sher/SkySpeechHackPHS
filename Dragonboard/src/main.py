@@ -38,7 +38,7 @@ def listenForUpdates():
     while True:
         c, addr = s.accept()     
     
-        inData = s.recv(1024)
+        inData = c.recv(1024)
 
         if(inData[:3] == "MS:"):
           dumpData(inData)  
