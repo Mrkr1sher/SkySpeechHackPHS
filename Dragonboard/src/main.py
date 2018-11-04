@@ -36,14 +36,13 @@ def listenForUpdates():
         s.listen(-1)  
 
         conn, accept = s.accept()
-
-        with conn:
-            print("Device connected")
-            while True:
-                data = conn.recv()
-                print("Data received : "  + str(data))
-                if not data : break
-                dumpData(data)
+        
+        print("Device connected")
+        while True:
+            data = conn.recv()
+            print("Data received : "  + str(data))
+            if not data : break
+            dumpData(data)
 
             
 
