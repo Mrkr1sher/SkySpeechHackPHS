@@ -2,7 +2,7 @@ import socket
 import json
 
 port = 1236
-localIp  = "localhost"
+localIp  = "172.16.243.226"
 
 #Dump function
 def dumpData(data):
