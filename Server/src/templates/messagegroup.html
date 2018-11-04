@@ -1,0 +1,22 @@
+<style>
+    @keyframes messageArrive {
+        0% {
+            transform: translateX(200px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="card pullup" style="margin-top: 50px">
+    <div class="card-header bg-primary">
+        <span class="typer text-white" data-words="{{date}}" data-delay="30" data-deleteDelay="6000000"></span>
+    </div>
+    <ul class="list-group list-group-flush">
+        {{messages | safe}}
+    </ul>
+</div>
+
