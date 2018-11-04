@@ -13,8 +13,6 @@ def dumpData(data):
 
     f.close()
 
-    print(currentData)
-
     f = open("messages.json","w")
     json.dump(currentData, f)
 
