@@ -31,11 +31,13 @@ def listenForUpdates():
     s = socket.socket()
     s.bind((localIp, port))
 
-    s.listen(5)               
+              
 
     inData = None
 
     while True:
+
+        s.listen(5)     
 
         c, addr = s.accept() 
 
@@ -45,6 +47,8 @@ def listenForUpdates():
             inData = c.recv(1024)
 
             print("Data" + str(inData))
+
+            dumpData(inData)
 
 
 print("Listen for updates ")
