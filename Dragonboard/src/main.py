@@ -31,21 +31,25 @@ def listenForUpdates():
     s = socket.socket()
     s.bind((localIp, port))
 
-    s.listen(5)               
+              
 
     inData = None
 
     while True:
+
+        s.listen(5)     
+
         c, addr = s.accept() 
 
-        print("accepted connection")    
-    
-        inData = c.recv(1024)
+        while True:
+            print("accepted connection")    
+        
+            inData = c.recv(1024)
 
-        print("Data" + str(inData))
+            print("Data" + str(inData))
 
-        if(inData[:3] == "MS:"):
-          dumpData(inData)  
+            #dumpData(inData)
+
 
 print("Listen for updates ")
 listenForUpdates()
