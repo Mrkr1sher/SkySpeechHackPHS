@@ -2,7 +2,7 @@ import requests
 import json
 
 
-link = "http://172.16.240.43:80/api/postmessage"
+link = "http://18.216.42.131/api/postmessage"
 key = "Chris"
 
 messageList =  json.load(open("messages.json"))
