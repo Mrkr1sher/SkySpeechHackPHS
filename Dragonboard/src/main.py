@@ -16,7 +16,7 @@ def dumpData(data):
     f.close()
 
     f = open("messages.json","w")
-    json.dump(f, currentData)
+    json.dump(currentData, f)
 
     f.close()
 
