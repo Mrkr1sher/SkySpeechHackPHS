@@ -39,7 +39,7 @@ def listenForUpdates():
         
         print("Device connected")
         while True:
-            data = conn.recv()
+            data = conn.recv(1024)
             print("Data received : "  + str(data))
             if not data : break
             dumpData(data)
