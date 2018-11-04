@@ -7,19 +7,15 @@ localIp  = "172.16.243.226"
 #Dump function
 def dumpData(data):
 
-    f = open("messages.json")
-    if f == None:
-        f = open("messages.json", "w+")
-        json.dump([], f)
-        f.close()
-        f = open("messages.json", "r")
+    f = open("messages.json","r")
 
     currentData = json.load(f)
     
-    currentData.append()
+    currentData.append(data)
 
     f.close()
-    f = open("messages.json")
+
+    f = open("messages.json","w")
     json.dump(f, currentData)
 
     f.close()
@@ -45,8 +41,9 @@ def listenForUpdates():
             print("Device connected")
             while True:
                 data = conn.recv()
-                print("Data send"  + str(data))
+                print("Data received : "  + str(data))
                 if not data : break
+                dumpData(data)
 
             
 
