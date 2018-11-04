@@ -2,6 +2,7 @@ from app import app
 from bson import json_util
 from flask import render_template, request
 from database import post_message, messagecollection
+import pymongo
 
 
 def genNavbar(currentPage):
@@ -22,12 +23,12 @@ def index():
 def messages():
     messagedict = {}
     messagegroups = ""
-    for message in messagecollection.find():
+    for message in messagecollection.find().sort("date", direction=pymongo.DESCENDING):
         if message['date'] in messagedict:
             messagedict[message['date']] += [message]
         else:
             messagedict[message['date']] = [message]
-    for key in sorted(messagedict.keys(), reverse=True):
+    for key in messagedict:
         group = messagedict[key]
         messagesingroup = ""
         for message in group:
