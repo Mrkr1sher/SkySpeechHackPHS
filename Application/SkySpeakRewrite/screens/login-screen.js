@@ -12,6 +12,7 @@ export default class Login extends React.Component {
     this.state = {
       name: ""
     };
+    global.dragonIP = "172.16.241.85"
   }
 
   render() {

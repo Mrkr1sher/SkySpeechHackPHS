@@ -2,10 +2,37 @@ import React from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import TopBrand from "../components/login-screen/topbranding";
 import LinearGradient from "react-native-linear-gradient";
+import moment from "moment";
 
 export default class Home extends React.Component {
   static navigationOptions = {
     header: null
+  };
+
+  constructor() {
+    super();
+    this.state = {
+      message: ""
+    };
+  }
+
+  sendMessage = () => {
+    sender = this.props.navigation.getParam("name");
+    message = this.state.message;
+    date = moment().format("YYYY-MM-DD");
+    dragonURL = "http://" + global.dragonIP + ":5000/upload";
+    serverURL = "http://18.216.42.131/api/postmessage"
+
+    fetch(dragonURL, {
+      method: "POST",
+      body: JSON.stringify({
+        sender: sender,
+        message: message,
+        date: date
+      })
+    }).then(response => {
+      console.log(response);
+    });
   };
 
   render() {
@@ -17,11 +44,11 @@ export default class Home extends React.Component {
           <TextInput
             placeholder="Write something"
             onChangeText={text => {
-              this.setState({ name: text });
+              this.setState({ message: text });
             }}
             style={styles.inputfield}
           />
-          <TouchableOpacity onPress={() => {}} style={{width: "30%"}}>
+          <TouchableOpacity onPress={this.sendMessage} style={{ width: "30%" }}>
             <LinearGradient
               style={styles.connectbutton}
               colors={["white", "white"]}
