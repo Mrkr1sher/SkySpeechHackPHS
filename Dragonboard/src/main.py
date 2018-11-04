@@ -37,7 +37,7 @@ def listenForUpdates():
 
     while True:
 
-        s.listen()  
+        s.listen(-1)  
 
         conn, accept = s.accept()
 
