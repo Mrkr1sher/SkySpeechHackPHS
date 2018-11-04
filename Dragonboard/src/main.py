@@ -1,26 +1,30 @@
 import socket
 import json
 
-port = 1234
-localIp  = "172.16.243.226"
+port = 1236
+localIp  = "localhost"
 
 #Dump function
 def dumpData(data):
 
-    f = open("messages.json")
-    if f == None:
-        f = open("messages.json", "w+")
-        json.dump([], f)
-        f.close()
-        f = open("messages.json", "r")
+    data = data.decode("utf-8")
+
+
+    data = json.loads(data)
+    print(data)
+
+    f = open("messages.json","r")
 
     currentData = json.load(f)
     
-    currentData.append()
+    currentData.append(data)
 
     f.close()
-    f = open("messages.json")
-    json.dump(f, currentData)
+
+    print(currentData)
+
+    f = open("messages.json","w")
+    json.dump(currentData, f)
 
     f.close()
 
@@ -37,19 +41,19 @@ def listenForUpdates():
 
     while True:
 
-        s.listen(5)     
+        s.listen(-1)  
 
-        c, addr = s.accept() 
-
-        while True:
-            print("accepted connection")    
+        conn, accept = s.accept()
         
-            inData = c.recv(1024)
+        print("Device connected")
+        while True:
+            data = conn.recv(1024)
+            if not data : break
+            print("Data received : "  + str(data))
+            dumpData(data)
+            conn.send(bytes("server confirming", "utf-8"))
 
-            print("Data" + str(inData))
-
-            #dumpData(inData)
-
+            
 
 print("Listen for updates ")
 listenForUpdates()
