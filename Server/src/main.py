@@ -27,7 +27,7 @@ def messages():
             messagedict[message['date']] += [message]
         else:
             messagedict[message['date']] = [message]
-    for key in messagedict:
+    for key in sorted(messagedict.keys(), reverse=True):
         group = messagedict[key]
         messagesingroup = ""
         for message in group:

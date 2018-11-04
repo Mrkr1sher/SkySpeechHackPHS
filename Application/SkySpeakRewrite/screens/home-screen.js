@@ -3,6 +3,8 @@ import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import TopBrand from "../components/login-screen/topbranding";
 import LinearGradient from "react-native-linear-gradient";
 import moment from "moment";
+import Icon from "react-native-vector-icons/Ionicons";
+import Snackbar from 'react-native-snackbar';
 
 export default class Home extends React.Component {
   static navigationOptions = {
@@ -20,7 +22,7 @@ export default class Home extends React.Component {
     sender = this.props.navigation.getParam("name");
     message = this.state.message;
     date = moment().format("YYYY-MM-DD");
-    dragonURL = "http://" + global.dragonIP + ":5000/upload";
+    dragonURL = "http://" + global.dragonIP + "/upload";
     // serverURL = "http://18.216.42.131/api/postmessage";
 
     fetch(dragonURL, {
@@ -31,14 +33,20 @@ export default class Home extends React.Component {
         date: date
       })
     }).then(response => {
-      console.log(response);
+      Snackbar.show({title: "Sent!"})
+      this.setState({message: ""});
     });
   };
 
   render() {
-    var message = "Welcome, " + this.props.navigation.getParam("name");
+    var message = this.props.navigation.getParam("name");
     return (
-      <View style={styles.container}>
+      <LinearGradient
+        style={styles.container}
+        colors={["#0080FB", "#5eb0ff", "#0080FB"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+      >
         <TopBrand content={message} />
         <View style={styles.row}>
           <TextInput
@@ -47,17 +55,21 @@ export default class Home extends React.Component {
               this.setState({ message: text });
             }}
             style={styles.inputfield}
+            value={this.state.message}
+            placeholderTextColor="white"
+            
           />
           <TouchableOpacity onPress={this.sendMessage} style={{ width: "30%" }}>
             <LinearGradient
               style={styles.connectbutton}
               colors={["white", "white"]}
             >
+              <Icon name="md-send" />
               <Text style={styles.connecttext}>Send Message</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
-      </View>
+      </LinearGradient>
     );
   }
 }

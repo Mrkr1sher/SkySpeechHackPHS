@@ -30,5 +30,9 @@ def handle():
 
     return "Success"
 
+@app.route("/ping", methods=['GET'])
+def pong():
+    return "Pong!"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="5000", debug=True)
