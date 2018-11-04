@@ -2,7 +2,7 @@ import requests
 import json
 
 
-link = "127.0.0.1:5000/postmessage"
+link = "http://172.16.240.43:80/api/postmessage"
 key = "Chris"
 
 messageList =  json.load(open("messages.json"))
@@ -15,11 +15,8 @@ def uploadAllTheMessages():
 
 
 def uploadMessage(message):
+    print(message)
 
-    payload = {"data" : message}
-
-    print(payload)
-
-    #r = requests.post(link, data=payload)
+    r = requests.post(link, data=message)
 
 uploadAllTheMessages()
