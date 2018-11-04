@@ -21,13 +21,13 @@ export default class Home extends React.Component {
     message = this.state.message;
     date = moment().format("YYYY-MM-DD");
     dragonURL = "http://" + global.dragonIP + ":5000/upload";
-    serverURL = "http://18.216.42.131/api/postmessage"
+    // serverURL = "http://18.216.42.131/api/postmessage";
 
     fetch(dragonURL, {
       method: "POST",
       body: JSON.stringify({
         sender: sender,
-        message: message,
+        content: message,
         date: date
       })
     }).then(response => {

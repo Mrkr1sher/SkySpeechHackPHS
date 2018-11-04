@@ -46,7 +46,9 @@ def about():
 
 @app.route('/api/postmessage', methods=['POST'])
 def postmessage():
+    print(request.data)
     messagejson = json_util.loads(request.data)
+    print(messagejson)
     return post_message(messagejson)
 
 
