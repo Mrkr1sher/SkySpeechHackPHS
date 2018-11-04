@@ -37,19 +37,18 @@ def listenForUpdates():
 
     while True:
 
-        s.listen(5)     
+        s.listen()  
 
-        c, addr = s.accept() 
+        conn, accept = s.accept()
 
-        while True:
-            print("accepted connection")    
-        
-            inData = c.recv(1024)
+        with conn:
+            print("Device connected")
+            while True:
+                data = conn.recv()
+                print("Data send"  + str(data))
+                if not data : break
 
-            print("Data" + str(inData))
-
-            #dumpData(inData)
-
+            
 
 print("Listen for updates ")
 listenForUpdates()
