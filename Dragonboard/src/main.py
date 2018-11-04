@@ -48,7 +48,7 @@ def listenForUpdates():
 
             print("Data" + str(inData))
 
-            dumpData(inData)
+            #dumpData(inData)
 
 
 print("Listen for updates ")
