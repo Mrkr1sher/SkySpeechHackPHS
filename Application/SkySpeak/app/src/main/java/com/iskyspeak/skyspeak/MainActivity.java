@@ -23,7 +23,6 @@ import java.net.UnknownHostException;
 
 import java.io.BufferedWriter;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private Socket socket;
