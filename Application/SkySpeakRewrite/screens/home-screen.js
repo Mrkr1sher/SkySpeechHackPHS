@@ -4,7 +4,7 @@ import TopBrand from "../components/login-screen/topbranding";
 import LinearGradient from "react-native-linear-gradient";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
-import Snackbar from 'react-native-snackbar';
+import Snackbar from "react-native-snackbar";
 
 export default class Home extends React.Component {
   static navigationOptions = {
@@ -33,8 +33,8 @@ export default class Home extends React.Component {
         date: date
       })
     }).then(response => {
-      Snackbar.show({title: "Sent!"})
-      this.setState({message: ""});
+      Snackbar.show({ title: "Sent!" });
+      this.setState({ message: "" });
     });
   };
 
@@ -57,7 +57,6 @@ export default class Home extends React.Component {
             style={styles.inputfield}
             value={this.state.message}
             placeholderTextColor="white"
-            
           />
           <TouchableOpacity onPress={this.sendMessage} style={{ width: "30%" }}>
             <LinearGradient
